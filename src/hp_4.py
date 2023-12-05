@@ -51,7 +51,7 @@ def fees_report(infile, outfile):
             date_returned = datetime.strptime(row['date_returned'],"%m/%d/%Y")
             if date_returned > date_due:
                 days_late = (date_returned - date_due).days
-                late_fee = days_late * 0.25
+                late_fee = round(days_late * 0.25,2)
                 late_fees_dict[row['patron_id']] += late_fee
             else:
                 late_fees_dict[row['patron_id']] = float(0)
