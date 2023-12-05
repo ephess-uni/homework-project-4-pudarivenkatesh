@@ -53,6 +53,8 @@ def fees_report(infile, outfile):
                 days_late = (date_returned - date_due).days
                 late_fee = days_late * 0.25
                 late_fees_dict[row['patron_id']] += late_fee
+            else:
+                late_fees_dict[row['patron_id']] = float(0)
     with open(outfile,'w',newline='') as file:
         cols = ['patron_id','late_fees']
         late_fees_dict = [{"patron_id":key,"late_fees":value} for key,value in late_fees_dict.items()]
