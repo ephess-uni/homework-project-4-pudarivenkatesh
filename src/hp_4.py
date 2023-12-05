@@ -55,6 +55,7 @@ def fees_report(infile, outfile):
                 late_fees_dict[row['patron_id']] += late_fee
     with open(outfile,'w',newline='') as file:
         cols = ['patron_id','late_fees']
+        late_fees_dict = [{"patron_id":key,"late_fees":value} for key,value in late_fees_dict.items()]
         writer = DictWriter(file,cols)
         writer.writeheader()
         writer.writerows(late_fees_dict)
