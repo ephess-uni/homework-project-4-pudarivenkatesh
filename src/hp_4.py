@@ -57,8 +57,8 @@ def fees_report(infile, outfile):
         cols = ['patron_id','late_fees']
         writer = DictWriter(file,cols)
         writer.writeheader()
-        for patron_id,late_fee  in late_fees_dict.items():
-            writer.writerow([patron_id, '{:.2f}'.format(late_fee)])
+        writer.writerows(late_fees_dict)
+
             
 
 
