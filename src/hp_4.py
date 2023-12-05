@@ -34,7 +34,7 @@ def add_date_range(values, start_date):
     `start_date`.  The date, value pairs are returned as tuples
     in the returned list."""
     new_dates  = []
-    start_Date = datetime.strptime(start_date,"%Y-%m-%d")
+    start_date = datetime.strptime(start_date,"%Y-%m-%d")
     for pos,val in enumerate(values):
         new_dates.append((start_date+timedelta(days=pos),val))
     return new_dates
@@ -54,7 +54,7 @@ def fees_report(infile, outfile):
                 late_fee = days_late * 0.25
                 late_fees_dict[row['patron_id']] += late_fee
     with open(outfile,'w',newline='') as file:
-        writer = writer(file)
+        writer = DictWriter(file)
         writer.writerow(['patron_id','late_fees'])
         for patroon_id,late_fee  in late_fees_dict.items():
             write.writerow([patron_id, '{:.2f}'.format(late_fee)])
